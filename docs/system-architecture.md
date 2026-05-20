@@ -70,7 +70,7 @@ TurboPi Hardware + Motors + Servos
         ↓
 Robot Movement / Camera Alignment / Physical Response
 ```
-##Main System Components
+## Main System Components
 | Component              | Role                                                   |
 | ---------------------- | ------------------------------------------------------ |
 | Raspberry Pi 4B        | Main computing and control platform                    |
@@ -84,7 +84,7 @@ Robot Movement / Camera Alignment / Physical Response
 | Ultrasonic sensor      | Supports forward safety / crash-guard behaviour        |
 
 
-##Design Approach
+## Design Approach
 
 The system was designed to combine manual control, voice interaction, and camera-based autonomous behaviour into one robot platform. Instead of treating each feature as a separate experiment, the project aimed to integrate them into a single working robot system.
 
