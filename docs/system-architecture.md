@@ -70,18 +70,21 @@ TurboPi Hardware + Motors + Servos
         ↓
 Robot Movement / Camera Alignment / Physical Response
 ```
-Main System Components
-Component	Role
-Raspberry Pi 4B	Main computing and control platform
-TurboPi robot platform	Robot chassis, motor control, and hardware integration
-Flask server	Routes movement and control commands
-Tkinter control app	Provides manual control interface
-WonderEcho module	Enables offline voice command input
-Camera module	Provides input for line-following and ball-tracking
-OpenCV	Processes camera frames for visual detection
-Mecanum wheels	Enable multidirectional movement
-Ultrasonic sensor	Supports forward safety / crash-guard behaviour
-Design Approach
+##Main System Components
+| Component              | Role                                                   |
+| ---------------------- | ------------------------------------------------------ |
+| Raspberry Pi 4B        | Main computing and control platform                    |
+| TurboPi robot platform | Robot chassis, motor control, and hardware integration |
+| Flask server           | Routes movement and control commands                   |
+| Tkinter control app    | Provides manual control interface                      |
+| WonderEcho module      | Enables offline voice command input                    |
+| Camera module          | Provides input for line-following and ball-tracking    |
+| OpenCV                 | Processes camera frames for visual detection           |
+| Mecanum wheels         | Enable multidirectional movement                       |
+| Ultrasonic sensor      | Supports forward safety / crash-guard behaviour        |
+
+
+##Design Approach
 
 The system was designed to combine manual control, voice interaction, and camera-based autonomous behaviour into one robot platform. Instead of treating each feature as a separate experiment, the project aimed to integrate them into a single working robot system.
 
