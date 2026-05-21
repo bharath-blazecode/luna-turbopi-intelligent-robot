@@ -1,5 +1,7 @@
 # LUNA — TurboPi Intelligent Robot
 
+![LUNA TurboPi robot](media/photos/luna-front-view.jpg)
+
 LUNA is a Raspberry Pi-based robotics project built on the Hiwonder TurboPi platform. The project integrates wireless robot control, camera streaming, OpenCV-based ball tracking, WonderEcho voice commands, PID-style tuning, and ultrasonic safety logic into one working embedded robotics system.
 
 > This repository is a sanitized portfolio version of a robotics project. It is structured to demonstrate the technical design, implementation process, testing, and engineering decisions without publishing the original assignment submission.
