@@ -170,26 +170,6 @@ This would move the robot closer to a more complete autonomous robotics platform
 
 ---
 
-## 9. Improved Documentation and Demo Material
-
-### Improvement
-
-The project could be strengthened with more demonstration media and clearer visual explanation.
-
-Possible additions include:
-
-- Demo GIFs
-- Short video clips
-- Annotated architecture diagrams
-- Screenshots of the control interface
-- Before/after tuning examples
-- Hardware wiring diagrams
-
-### Benefit
-
-This would make the repository easier for recruiters, tutors, and technical reviewers to understand quickly.
-
----
 
 ## Final Direction
 
