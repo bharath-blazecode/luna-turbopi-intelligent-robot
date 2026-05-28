@@ -98,3 +98,7 @@ pip install -r requirements.txt
 ```
 
 The TurboPi SDK (HiwonderSDK, Camera, yaml_handle) must be installed separately on the Raspberry Pi. See the [Hiwonder TurboPi documentation](https://wiki.hiwonder.com/projects/TurboPi/en/standard/index.html) for setup.
+
+## Third-Party Components
+
+The TurboPi platform and associated SDK components (HiwonderSDK, VisualPatrol.py, Camera, yaml_handle) are products of [Hiwonder](https://www.hiwonder.com). This repository does not reproduce or redistribute their proprietary SDK. References to SDK paths and function calls are included only to document integration work.
