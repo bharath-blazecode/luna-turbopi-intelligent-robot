@@ -2,71 +2,68 @@
 
 ## Overview
 
-LUNA included a camera-based ball-following system that allowed the robot to detect and follow a coloured object using computer vision techniques. This subsystem combined camera input, image processing, movement logic, and PID-style behaviour to create autonomous object-following functionality.
+LUNA's ball-tracking system uses camera-based computer vision to detect and follow a coloured target in real time. It combines LAB colour-space detection, contour analysis, PID-based gimbal control, and chassis following behaviour into an autonomous tracking loop. This was primarily Zhirui Lu's implementation, with PID fine-tuning contributions from both team members.
 
-## Purpose
+## How It Works
 
-The purpose of this subsystem was to explore how computer vision can be used to guide robot movement in real time. Instead of relying only on manual or voice commands, the robot could analyse visual input and react dynamically to a moving target.
-
-## System Workflow
+The system runs two concurrent threads — one for head/gimbal control, one for chassis movement — both fed by a shared vision pipeline.
 
 ```text
-Camera Input
+Camera Frame
       ↓
-Frame Processing
+Convert to LAB colour space (Gaussian blur applied first)
       ↓
-Colour / Object Detection
+Threshold against stored LAB ranges (red / green / blue)
       ↓
-Target Position Calculation
+Morphological open + close to clean the mask
       ↓
-Movement Decision
+Find largest valid contour (area > 300 px)
       ↓
-Motor Control
+Calculate centroid (cx, cy) and enclosing circle radius (r)
       ↓
-Robot Follows Target
+┌─────────────────────────────────────────┐
+│  Gimbal thread: move camera to centre   │
+│  Chassis thread: drive toward target    │
+└─────────────────────────────────────────┘
 ```
 
-## Implementation Approach
+## Vision Pipeline
 
-The ball-tracking system used OpenCV-based image processing to detect a coloured target from the camera feed. The system analysed each frame, identified the target position, and adjusted robot movement accordingly.
+Colour detection uses the LAB colour space rather than RGB or HSV. LAB thresholds are stored in a YAML config file and loaded at startup, which means colour ranges can be tuned without editing the source code.
 
-Movement behaviour was connected to the detected position of the target so the robot could continuously adjust its direction and maintain tracking.
+For each frame the pipeline converts to LAB, applies a 3×3 Gaussian blur, then runs `cv2.inRange` against the stored thresholds. The result goes through morphological open and close operations to remove noise and fill gaps. The largest contour above 300 px² is selected as the target.
 
-## Technical Focus
+## Gimbal (Head) Control
 
-This subsystem involved:
+The gimbal uses a proportional + integral controller to keep the detected target centred in the camera frame:
 
-- Camera-based visual input
-- OpenCV image processing
-- Colour-based target detection
-- Real-time movement adjustment
-- Integration with robot motor-control systems
-- Autonomous tracking behaviour
+- Runs at ~55 Hz (18 ms loop)
+- Gain values: Kp = 0.40 (yaw), 0.44 (pitch); Ki = 0.020 (yaw), 0.025 (pitch) per second
+- Anti-windup clamp of ±180 pulse units on the integral term
+- A lock/unlock system requiring 4 consecutive detections to confirm tracking and 0.5 s without detection to release — this prevents single-frame noise from triggering movement
 
-## PID-Style Behaviour
+When the target is lost and the unlock timeout expires, the gimbal enters a raster scan pattern to search for the target.
 
-To improve tracking smoothness, PID-style tuning was used to help stabilise robot movement during autonomous following behaviour.
+## Chassis (Vehicle) Following
 
-This helped reduce:
+Once the gimbal has a stable lock, the chassis thread drives the robot toward the target:
 
-- Sudden movement changes
-- Overshooting behaviour
-- Unstable turning response
-- Jitter during target tracking
+- Distance is estimated from the detected ball radius
+- Target radius for safe following distance: ~100 px
+- PID gains: P = 0.15 (lateral / x), P = 1.00 (forward-back / y), with small I and D terms
+- Deadband thresholds prevent movement for minor detection noise: ±15 px lateral, ±15 px forward-back
+- Maximum chassis speed capped at 80% to keep movement safe indoors
+- Command rate limited to 50–80 ms to reduce bus/servo chatter
+
+## PID Tuning
+
+The initial PID parameters were set by Zhirui Lu. Bharath "Barry" Sampath contributed further fine-tuning after observing real-world robot behaviour. The main issues corrected through tuning were gimbal oscillation, chassis overshooting the target distance, and jitter during slow target movement.
 
 ## Challenges
 
-Ball-following behaviour required the robot to process visual information while simultaneously adjusting physical movement in real time.
+The main practical problems encountered:
 
-Challenges included:
-
-- Maintaining stable target detection
-- Handling movement delay
-- Reducing unstable turning behaviour
-- Synchronising camera processing with motor response
-
-## Engineering Lessons
-
-This subsystem demonstrated how computer vision and robotics can be integrated into an embedded system using Python, OpenCV, and movement-control logic.
-
-It also highlighted the importance of balancing software processing, movement response, and real-world robot behaviour during autonomous operation.
+- **Gimbal oscillation** — the head would overshoot and oscillate when gains were too high. Solved by reducing Kp and introducing a small integral term with anti-windup.
+- **Chassis instability while tracking** — limiting the chassis command rate to 50–80 ms significantly reduced erratic movement.
+- **False detections** — ambient lighting sometimes matched the LAB thresholds. The lock/unlock system (4 frames to lock, 0.5 s to unlock) filtered most single-frame noise.
+- **Camera frame direction correction** — a global angle offset had to be applied (`/config/angle?forward=180`) because the SDK's angle reference didn't match the physical chassis orientation.
