@@ -1,0 +1,27 @@
+# LUNA — TurboPi Intelligent Robot
+# Python dependencies
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Note: HiwonderSDK, Camera, yaml_handle, and related TurboPi modules are
+# proprietary SDK components installed directly on the Raspberry Pi and are
+# not available through pip. See the Hiwonder TurboPi documentation for setup.
+
+# I2C communication with WonderEcho module
+smbus2>=0.4.3
+
+# Computer vision (ball tracking, line following, camera frame processing)
+opencv-python>=4.8.0
+
+# Numerical operations used in vision processing
+numpy>=1.24.0
+
+# Flask web server (robot control server)
+flask>=3.0.0
+
+# Tkinter control app HTTP requests
+requests>=2.31.0
+
+# Camera frame display in Tkinter control app
+Pillow>=10.0.0
