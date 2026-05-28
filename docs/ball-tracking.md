@@ -9,17 +9,17 @@ LUNA's ball-tracking system uses camera-based computer vision to detect and foll
 The system runs two concurrent threads — one for head/gimbal control, one for chassis movement — both fed by a shared vision pipeline.
 
 ```text
-Camera Frame
+Camera Input
       ↓
-Convert to LAB colour space (Gaussian blur applied first)
+Frame Processing
       ↓
-Threshold against stored LAB ranges (red / green / blue)
+Colour / Object Detection [Threshold against stored LAB ranges (red / green / blue)]
       ↓
-Morphological open + close to clean the mask
+Target Position Calculation
       ↓
-Find largest valid contour (area > 300 px)
+Movement Decision
       ↓
-Calculate centroid (cx, cy) and enclosing circle radius (r)
+Motor Control
       ↓
 ┌─────────────────────────────────────────┐
 │  Gimbal thread: move camera to centre   │
@@ -57,7 +57,7 @@ Once the gimbal has a stable lock, the chassis thread drives the robot toward th
 
 ## PID Tuning
 
-The initial PID parameters were set by Zhirui Lu. Bharath "Barry" Sampath contributed further fine-tuning after observing real-world robot behaviour. The main issues corrected through tuning were gimbal oscillation, chassis overshooting the target distance, and jitter during slow target movement.
+The initial PID parameters were set by Zhirui Lu. I contributed further fine-tuning after observing real-world robot behaviour. The main issues corrected through tuning were gimbal oscillation, chassis overshooting the target distance, and jitter during slow target movement.
 
 ## Challenges
 
