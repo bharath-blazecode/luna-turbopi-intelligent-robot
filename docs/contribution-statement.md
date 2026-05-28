@@ -15,7 +15,7 @@ My main contributions to the project are in the following areas:
 - Instruction-following / line-following behaviour for pathway navigation.
 - Hardware assembly, robot setup, component mounting, and practical hardware troubleshooting.
 - Flask control app collaboration and command-routing workflow support.
-- PID-style fine-tuning after the initial PID implementation was started by his teammate.
+- PID-style fine-tuning after the initial PID implementation was started by my teammate.
 - Project documentation, technical explanation, and final presentation support.
 
 ## Zhirui Lu — Contributions
