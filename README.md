@@ -76,9 +76,10 @@ src/           Selected and cleaned source code modules
 README-assets/ Supporting images for the README
 ```
 
-## Current Status
+## Status
 
-The repository currently includes the professional documentation structure and project media. Selected cleaned code modules will be added after the documentation and project explanation are complete.
+Core documentation and selected source code modules are uploaded. 
+Remaining modules (Flask server, Tkinter control app, ball-tracking) are being sanitized and will be added progressively.
 
 The original university submission, student details, tutor details, and full raw assessment document are not included.
 
