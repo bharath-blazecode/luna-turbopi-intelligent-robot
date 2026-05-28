@@ -2,47 +2,63 @@
 
 ## Overview
 
-LUNA included a camera-based line-following behaviour that allowed the robot to follow a pathway using visual input. This subsystem was designed to let the robot respond to a physical path rather than relying only on manual or voice commands.
+LUNA's line-following behaviour is built on Hiwonder's `VisualPatrol.py` — the TurboPi platform's camera-based path-detection routine. My contribution was the WonderEcho integration layer: a controller that starts and stops `VisualPatrol.py` as a managed subprocess in response to spoken voice commands, and handles the interaction between manual movement and autonomous following.
 
-## Purpose
+## What VisualPatrol.py Does
 
-The purpose of this feature was to explore how computer vision can guide robot movement in a real-world environment. Instead of only receiving direct commands, the robot could use camera input to interpret a pathway and adjust its movement accordingly.
+`VisualPatrol.py` uses the robot's camera to detect a black line on a contrasting surface. It processes each frame to find the line's position and steers the mecanum chassis to keep the robot aligned with the path. The vision and movement logic are part of the Hiwonder SDK and not reproduced in this repository.
 
-## System Workflow
+## My Contribution: The WonderEcho Integration Controller
+
+The file `wonderecho_line_following_controller.py` handles:
+
+- Reading WonderEcho voice command IDs over I²C at 20 ms polling intervals
+- Starting `VisualPatrol.py` as a subprocess when voice command ID 102 is received
+- Stopping the subprocess cleanly (SIGINT → terminate → kill escalation) when any manual movement command is received
+- Preventing manual commands and the line-following routine from running at the same time
+- Logging all recognised command IDs for troubleshooting
 
 ```text
-Camera Input
-      ↓
-Frame Processing
-      ↓
-Line / Path Detection
-      ↓
-Movement Decision
-      ↓
-Motor Control
-      ↓
-Robot Follows Pathway
+Voice Command (ID 102)
+        ↓
+Read over I²C (bus 1, addr 0x34, reg 0x64)
+        ↓
+Map ID → "line_on" action
+        ↓
+Launch VisualPatrol.py as subprocess
+        ↓
+Robot follows line autonomously
+        ↓
+Manual movement command received
+        ↓
+Stop subprocess → execute manual movement
 ```
-## Implementation Approach
 
-The line-following system used camera-based guidance to detect a pathway and adjust the robot’s movement. The behaviour allowed LUNA to follow instructions from the environment, making the robot more autonomous than simple manual control.
+## Why Subprocess Rather Than Import
 
-This feature required the system to connect visual input with movement logic so the robot could respond continuously as the pathway changed.
+Running `VisualPatrol.py` as a subprocess rather than importing it directly keeps the two control systems independent. If the line-following routine crashes or hangs, it doesn't take down the voice-control loop. It also means the voice controller can stop line-following cleanly without relying on internal state from the SDK module.
 
-## Technical Focus
+## Configuration
 
-This subsystem involved:
+Voice command IDs can be overridden at runtime without editing the source by placing a JSON file at `~/voice_id_overrides.json`:
 
-- Camera-based input processing
-- Pathway detection logic
-- Movement adjustment based on visual feedback
-- Integration with the robot’s motor-control system
-- Real-world physical testing using the TurboPi platform
+```json
+{
+    "102": "line_on",
+    "9": "stop"
+}
+```
+
+The default command map is `{1: go, 2: back, 3: left, 4: right, 9: stop, 102: line_on}`.
 
 ## Challenges
 
-Line-following required the robot to respond smoothly to visual changes while maintaining stable movement. The main challenge was connecting the camera-based interpretation of the path with the robot’s physical movement response.
+The main problem was ensuring that starting and stopping line-following felt safe and predictable rather than glitchy.
 
-## Engineering Lessons
+A manual movement command arriving while `VisualPatrol.py` was running would cause both the manual movement code and the line-following code to issue chassis commands at the same time. The fix was to always stop the subprocess before executing any manual movement action — so the two paths cannot run concurrently.
 
-This feature demonstrated how visual perception can be connected to movement control in an embedded robotics system. It also showed the importance of careful integration between camera input, control logic, and physical robot behaviour.
+The subprocess stop sequence also needed to be robust. A simple `terminate()` call would sometimes leave the process in a zombie state if the SDK held open file descriptors. The SIGINT → 2 s wait → terminate → kill escalation was the reliable solution.
+
+## Engineering Notes
+
+This feature is a useful example of process management in Python — using `subprocess.Popen`, signal handling, and timeout-based escalation to control an external program safely. The same pattern would apply to any situation where you need to run and stop a third-party script from a parent control loop.
