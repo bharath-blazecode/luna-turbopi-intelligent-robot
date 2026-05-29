@@ -74,7 +74,7 @@ My main contributions:
 ```text
 docs/           Technical documentation and project write-ups
 media/          Project photos, diagrams, screenshots, and demo visuals
-src/            Selected and sanitized source code modules
+src/            Source code modules, one per subsystem
 LICENSE         MIT License
 DISCLAIMER.md   Usage, academic integrity, and liability notice
 ```
