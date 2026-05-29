@@ -7,7 +7,7 @@
 
 LUNA is a Raspberry Pi-based intelligent robot built on the Hiwonder TurboPi platform. The project combines hardware assembly, Python programming, wireless control, computer vision, voice interaction, and movement tuning into one integrated robotics system.
 
-This repository is a sanitized portfolio version of a two-person university robotics project. It's structured as a technical case study — documenting design decisions, implementation details, and engineering challenges without republishing the original academic submission.
+This repository is a sanitized portfolio version of a two-person university robotics project. It's structured as a technical case study covering design decisions, implementation details, and engineering challenges.
 
 **Demo video:** https://youtu.be/RrAcwlQjl2Y
 
@@ -48,7 +48,7 @@ My main contributions:
 - Line-following integration controller: voice-triggered subprocess management for Hiwonder's VisualPatrol.py
 - Hardware assembly, robot setup, component mounting, and hands-on troubleshooting (including diagnosing and resolving a motor/wheel failure)
 - Flask control app collaboration and command-routing workflow support
-- PID-style fine-tuning after the initial PID implementation by my teammate
+- PID-style fine-tuning after the initial PID implementation by Zhirui Lu
 - Project documentation, technical explanation, and final presentation support
 
 → Full breakdown: [docs/contribution-statement.md](docs/contribution-statement.md)
@@ -82,10 +82,10 @@ Code is organised into focused modules. Files are being added progressively as e
 
 ```text
 src/
-├── control_app/        Tkinter desktop control interface (in progress)
-├── flask_server/       Flask server and robot command routing (in progress)
-├── voice_control/      WonderEcho snapshot controller
-├── vision_tracking/    Ball-tracking and OpenCV code (in progress)
+├── control_app/        Tkinter desktop control interface ✓
+├── flask_server/       Flask server and robot command routing ✓
+├── voice_control/      WonderEcho snapshot controller ✓
+├── vision_tracking/    Ball-tracking and OpenCV code ✓
 ├── line_following/     WonderEcho line-following integration controller ✓
 └── safety_guard/       Ultrasonic crash guard for forward movement ✓
 ```
