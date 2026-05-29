@@ -29,9 +29,8 @@ Dependencies (pip): requests, Pillow
 import io
 import os
 import threading
-import time
 import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, ttk
 
 import requests
 from PIL import Image, ImageTk
