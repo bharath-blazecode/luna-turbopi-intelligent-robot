@@ -89,7 +89,7 @@ src/
 ├── flask_server/       Flask server and robot command routing   ✓
 ├── voice_control/      WonderEcho snapshot controller           ✓
 ├── vision_tracking/    Stand-alone voice + ball-tracking        ✓
-├── line_following/     WonderEcho line-following controller      ✓
+├── line_following/     WonderEcho line-following controller     ✓
 └── safety_guard/       Ultrasonic crash guard                   ✓
 ```
 
