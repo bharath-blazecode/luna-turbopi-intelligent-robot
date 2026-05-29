@@ -1,22 +1,22 @@
 # Source Code
 
-This folder contains selected and sanitized source code modules from the LUNA TurboPi Intelligent Robot project.
+Selected and sanitized source code modules from the LUNA TurboPi Intelligent Robot project.
 
-The code is organised into focused modules so that each subsystem can be understood separately.
+Each subfolder covers one subsystem so they can be understood independently.
 
 ## Folder Structure
 
-| Folder | Purpose |
+| Folder | Contents |
 |---|---|
-| `control_app/` | Desktop control interface and client-side control logic |
-| `flask_server/` | Flask-based server and robot command routing |
-| `voice_control/` | WonderEcho voice-control integration using I²C |
-| `vision_tracking/` | Camera-based visual tracking and OpenCV-related code |
-| `line_following/` | Instruction-following / pathway-following behaviour |
-| `safety_guard/` | Sensor-based safety and crash-guard logic |
+| `control_app/` | Tkinter desktop control interface |
+| `flask_server/` | Flask server and robot command routing |
+| `voice_control/` | WonderEcho voice-control with snapshot capture |
+| `vision_tracking/` | Stand-alone voice + ball-tracking |
+| `line_following/` | WonderEcho integration controller for line-following |
+| `safety_guard/` | Ultrasonic crash guard for forward movement |
 
 ## Notes
 
-This source code is provided as a sanitized portfolio version of the original project code. It removes unnecessary academic submission material, private environment details, and raw development notes.
+These modules require Raspberry Pi hardware, the Hiwonder TurboPi platform, and the HiwonderSDK to run. The SDK path defaults to `/home/pi/TurboPi` and can be overridden with the `LUNA_TURBOPI_SDK` environment variable.
 
-Some modules require Raspberry Pi hardware, the Hiwonder TurboPi platform, and HiwonderSDK dependencies to run correctly.
+See [`requirements.txt`](../requirements.txt) for pip-installable dependencies.
