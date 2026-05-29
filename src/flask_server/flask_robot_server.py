@@ -276,13 +276,6 @@ def camera_open():
 # Gimbal
 # ---------------------------------------------------------------------------
 
-try:
-    _servo_yaml = yaml_handle.get_yaml_data(yaml_handle.servo_file_path) or {}
-    SERVO_CENTER_X = int(_servo_yaml.get("servo2", 1500))
-except Exception:
-    SERVO_CENTER_X = 1500
-
-
 class Gimbal:
     """
     Two-axis servo gimbal with rate limiting and soft angle clamping.
