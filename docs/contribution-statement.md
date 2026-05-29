@@ -14,7 +14,7 @@ This project was completed collaboratively by Bharath "Barry" Sampath and Zhirui
 - Instruction-following / line-following behaviour: wrote the WonderEcho integration controller that starts and stops the line-following routine via voice command
 - Hardware assembly, robot setup, component mounting, and practical hardware troubleshooting (including diagnosing and resolving a motor/wheel failure mid-project)
 - Flask control app collaboration and command-routing workflow support
-- PID-style fine-tuning after the initial PID implementation was completed by my teammate
+- PID-style fine-tuning after the initial PID implementation was completed by Zhirui Lu
 - Project documentation, technical explanation, and final presentation support
 
 ## Zhirui Lu
