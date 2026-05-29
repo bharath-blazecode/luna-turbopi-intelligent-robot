@@ -28,4 +28,4 @@ This repository references the Hiwonder TurboPi SDK (HiwonderSDK, VisualPatrol.p
 
 ## Copyright
 
-All original code and documentation in this repository is copyright © 2025 Bharath "Barry" Sampath, subject to the terms of the MIT License included in this repository.
+All original code and documentation in this repository is copyright © 2026 Bharath "Barry" Sampath, subject to the terms of the MIT License included in this repository.
