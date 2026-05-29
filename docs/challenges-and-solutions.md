@@ -147,7 +147,7 @@ This project showed the importance of:
 - Modular control-system design
 - Real-world testing and validation
 - Team collaboration
-- Honest contribution tracking
+- Clear documentation during development
 - Iterative improvement
 
 Overall, these challenges made the project more valuable because they required real engineering decision-making rather than only following a fixed tutorial.
