@@ -1,6 +1,6 @@
 # Contribution Statement
 
-LUNA was completed as a two-person robotics project. This repository presents a sanitized portfolio version of the work, focusing on the technical design, implementation process, system integration, validation, and engineering lessons learned.
+LUNA was completed as a two-person robotics project. This repository documents the technical design, implementation, system integration, and engineering decisions from the project.
 
 ## Overview
 
@@ -33,4 +33,4 @@ The final LUNA system was the result of shared teamwork. Some components — inc
 
 ## A Note on This Repository
 
-This repository is not a copy of the original university submission. It is a cleaned and restructured portfolio version intended to demonstrate technical learning and project experience. 
+This repository presents the project as a portfolio case study. The source code has been reviewed and documented in greater depth than the original implementation. The original assessment document and submission materials are not included.
