@@ -31,6 +31,6 @@ This project was completed collaboratively by Bharath "Barry" Sampath and Zhirui
 
 The final LUNA system was the result of shared teamwork. Some components — including the Flask control system, PID behaviour, and final integration — involved collaborative development and refinement across both team members. This document separates individual responsibilities where possible while reflecting that reality.
 
-## Academic Integrity Note
+## A Note on This Repository
 
 This repository is not a copy of the original university submission. It is a cleaned and restructured portfolio version intended to demonstrate technical learning and project experience. 
