@@ -3,10 +3,10 @@
 ## Prerequisites
 
 - Raspberry Pi 4B with the Hiwonder TurboPi SDK installed
-- Pi and your laptop connected to the same Wi-Fi network
+- Pi and your laptop connected to the same trusted local Wi-Fi network
 - Python dependencies installed (`pip install -r requirements.txt`)
 - SSH access to the Pi
-- The Flask server has no authentication. Run it only on a trusted local network
+- The Flask server has no authentication — run it only on a trusted local network, not on public or shared Wi-Fi
 
 ---
 
@@ -24,8 +24,9 @@ Note the IP (e.g. `192.168.1.45`). You'll need this for the control app.
 
 **Step 2 — Start the Flask server on the Pi**
 
-SSH into the Pi, then run:
+SSH into the Pi, navigate to the project directory, and run:
 ```bash
+cd luna-turbopi-intelligent-robot
 python3 src/flask_server/flask_robot_server.py
 ```
 
@@ -60,7 +61,11 @@ Enable **Vehicle PID** and click **Start Tracking** to start autonomous ball-fol
 
 ## Mode 2 — Standalone Voice Control (Pi only)
 
-These scripts run directly on the Pi. No laptop or Flask server needed. SSH into the Pi and run the script for the behaviour you want.
+These scripts run directly on the Pi. No laptop or Flask server needed. SSH into the Pi, navigate to the project root, then run the script for the behaviour you want:
+
+```bash
+cd luna-turbopi-intelligent-robot
+```
 
 **Voice control + line-following**
 ```bash
