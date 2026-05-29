@@ -6,6 +6,7 @@
 - Pi and your laptop connected to the same Wi-Fi network
 - Python dependencies installed (`pip install -r requirements.txt`)
 - SSH access to the Pi
+- The Flask server has no authentication. Run it only on a trusted local network
 
 ---
 
