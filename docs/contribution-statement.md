@@ -33,4 +33,4 @@ The final LUNA system was the result of shared teamwork. Some components — inc
 
 ## Academic Integrity Note
 
-This repository is not a copy of the original university submission. It is a cleaned and restructured portfolio version intended to demonstrate technical learning and project experience. See [NOTICE.md](../NOTICE.md) for full details on what has been changed and what has been excluded.
+This repository is not a copy of the original university submission. It is a cleaned and restructured portfolio version intended to demonstrate technical learning and project experience. 
