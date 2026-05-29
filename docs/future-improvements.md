@@ -182,4 +182,4 @@ The strongest future direction for LUNA would be to turn it into a polished robo
 - Improved computer vision
 - Cleaner software architecture
 
-These improvements would make LUNA more than a university robotics project. They would turn it into a strong technical case study showing embedded systems, Python development, robotics, computer vision, IoT, and security-aware design.
+These improvements would make LUNA more than more than a prototype. They would turn it into a strong technical case study showing embedded systems, Python development, robotics, computer vision, IoT, and security-aware design.
