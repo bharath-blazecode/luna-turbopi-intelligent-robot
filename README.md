@@ -74,7 +74,6 @@ My main contributions:
 docs/          Technical documentation and project write-ups
 media/         Project photos, diagrams, screenshots, and demo visuals
 src/           Selected and sanitized source code modules
-NOTICE.md      Academic context and what has been changed from the original
 ```
 
 ## Source Code
