@@ -1,6 +1,6 @@
 # Source Code
 
-Selected and sanitized source code modules from the LUNA TurboPi Intelligent Robot project.
+Source code modules from the LUNA TurboPi Intelligent Robot project.
 
 Each subfolder covers one subsystem so they can be understood independently.
 
