@@ -57,6 +57,8 @@ This movement system gives LUNA more flexibility than a basic two-wheel robot be
 
 ## Core Data Flow
 
+![LUNA system architecture diagram](../media/diagrams/luna-system-architecture.svg)
+
 ```text
 User / Sensor Input
         ↓
