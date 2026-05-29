@@ -173,7 +173,7 @@ This would move the robot closer to a more complete autonomous robotics platform
 
 ## Final Direction
 
-The strongest future direction for LUNA would be to turn it into a polished robotics and cybersecurity-adjacent portfolio project. Possible next versions could focus on:
+The strongest future direction for LUNA would be developing it into a dedicated robotics and network security research platform. Possible next versions could focus on:
 
 - Autonomous patrol behaviour
 - Local network control
